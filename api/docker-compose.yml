@@ -37,20 +37,21 @@ services:
     networks:
       - symfony-api-platform-network
 
-  symfony-api-platform-db:
-    container_name: symfony-api-platform-db
-    image: mysql:8.0
-    ports:
+  symfony-api-platform-db :
+    container_name : symfony-api-platform-db
+    build :
+      context : ./docker/database
+    ports :
       - 36000:3306
-    environment:
-      MYSQL_DATABASE: symfony_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: root
-    command: mysqld --sql_mode="STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION"
-    volumes:
+    environment :
+      MYSQL_DATABASE : symfony_db
+      MYSQL_USER : user
+      MYSQL_PASSWORD : password
+      MYSQL_ROOT_PASSWORD : root
+    command : mysqld --sql_mode="STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION"
+    volumes :
       - symfony-api-platform-db-data:/var/lib/mysql
-    networks:
+    networks :
       - symfony-api-platform-network
 
 volumes:
